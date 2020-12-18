@@ -33,3 +33,8 @@
 /PS.sln
 /Debug
 /.vs
+
+Debug/
+PS/Debug
+PS/PS.vcxproj
+PS/PS.vcxproj.*
