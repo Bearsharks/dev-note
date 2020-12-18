@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+/PS.sln
+/Debug
+/.vs
