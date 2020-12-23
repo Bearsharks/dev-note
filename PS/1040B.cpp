@@ -13,7 +13,7 @@ int main() {
 	if (cnt == 1) {
 		cur = n/2 + 1;
 	}
-	if (remain > k || remain == 0) {
+	if (remain == 0) {
 		cur = k + 1;
 	}
 	while( cur <= n) {
