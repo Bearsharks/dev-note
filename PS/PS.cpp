@@ -10,6 +10,7 @@ int main()
         ans++;
         n /= 2;
     }
+	
     cout << ans;
     return 0;
 }
