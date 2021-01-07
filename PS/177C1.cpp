@@ -1,12 +1,13 @@
+#include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_set>
 using namespace std;
 
 class DSU {
 public:
 	DSU() {
 	}
-	DSU(int n):parent(n),rank(n,1),size(n,1) {
+	DSU(int n) :parent(n), rank(n, 1), size(n, 1) {
 		for (int i = 0; i < n; i++) {
 			parent[i] = i;
 		}
@@ -33,31 +34,39 @@ public:
 	int getSize(int u) {
 		return size[find(u)];
 	}
+	void initSize(int u) {
+		size[find(u)] = 0;
+	}
 private:
 	vector<int> parent;
 	vector<int> rank;
 	vector<int> size;
 };
 
-template <typename T>
-class mapped_DSU {
-public:
-	mapped_DSU() {
-	}
-	mapped_DSU(map<T,int> m) :mp(m), d(m.size()) {
+int main() {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int n, k, m;
+	cin >> n >> k;
+	DSU dsu(n + 1);
+	for (int i = 0; i < k; i++) {
+		int a, b;
+		cin >> a >> b;
+		dsu.merge(a, b);
 	}
 	
-	int find(T u) {
-		return d.find(mp[u]);
+	cin >> m;
+	for (int i = 0; i < m; i++) {
+		int a, b;
+		cin >> a >> b;
+		if(dsu.find(a) == dsu.find(b))
+			dsu.initSize(a);
+	}	
+	int mx = 0;
+
+	for (int i = 1; i <= n; i++) {
+		mx = max(mx, dsu.getSize(i));
 	}
-	void merge(T u, T v) {
-		d.merge(mp[u],mp[v]);
-	}
-	void makeSet(T u) {
-		mp[u] = mp.size();
-		d.makeSet();
-	}
-private:
-	map<T, int> mp;
-	DSU d;
-};
+	cout << mx;
+	return 0;
+}
