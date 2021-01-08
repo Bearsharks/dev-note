@@ -7,11 +7,8 @@ void type(string& ans) {
 	if (cin >> str) {
 		ans += str;
 		if (str == "pair") {
-			ans += "<"; type(ans);
-			ans += ","; type(ans);
-			ans += ">";
-		}
-			
+			ans += "<"; type(ans); ans += ","; type(ans); ans += ">";
+		}			
 	}
 	else {
 		result = false;
