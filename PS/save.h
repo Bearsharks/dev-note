@@ -11,7 +11,8 @@ int main() {
 	//freopen("output.txt", "w", stdout);
 	return 0;
 }
-
+//printf("%.9f %.9f\n", cur.first, cur.second);
+//scanf("%lf %lf %d", &a, &d, &n);
 //v[1~n]에서 longest increasing subsequence를 구하는 알고리즘
 vector<int> ans = { -1,INT_MAX };
 for (int i = 1; i <= n; i++) {
