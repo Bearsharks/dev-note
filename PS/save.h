@@ -57,4 +57,16 @@ bool dfs(pair<int, int> start, pair<int, int> cur) {
 	return false;
 }
 
+//중복조합 n H i = n + i - 1 C i
+int maxn = 1010;
+void getcombi(int maxn){
+	vector<vector<long long>> combi(maxn,vector<long long>(maxn));
+	combi[0][0] = 1;
+	for (int i = 1; i < maxn; i++) {
+		combi[i][0] = 1;
+		for (int j = 1; j <= i; j++) {
+			combi[i][j] = (combi[i - 1][j] + combi[i - 1][j - 1]);
+		}
+	}
+}
 */
