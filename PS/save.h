@@ -69,4 +69,14 @@ void getcombi(int maxn){
 		}
 	}
 }
+
+	//부분합 만들기 m개씩 더하는
+	for (int i = 1; i <= n; i++) {
+		v[i] += v[i - 1];
+	}
+	int cur = 1;
+	for (int i = n-m+1; i <= n; i++) {
+		save[cur] = v[i] - v[cur-1];
+		cur++;
+	}
 */
