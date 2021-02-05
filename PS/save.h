@@ -9,6 +9,10 @@ int main() {
 
 	//freopen("input.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
+
+
+	//cout.setf(ios::fixed);
+	//cout.precision(5);
 	return 0;
 }
 //printf("%.9f %.9f\n", cur.first, cur.second);
