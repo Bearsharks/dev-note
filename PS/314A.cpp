@@ -1,25 +1,37 @@
 #include <iostream>
+#include <cmath>
 #include <vector>
 using namespace std;
 
 int main() {
 	cin.tie(NULL);
 	ios::sync_with_stdio(false);
-	int n,k;
-	cin >> n>>k;
-	vector<int> v(n + 1);
-	vector<int> d(n + 1);
-	for (int i = 1; i <= n; i++) {
-		cin >> v[i];
+	long long x, y, m;
+	cin >>x>>y>>m;
+	if ( x >= m || y >= m){
+		cout << 0;
+		return 0;
+	}		
+	if( x <= 0 && y <= 0) {
+		cout << -1;
+		return 0;
 	}
-
-	for (int i = 2; i <= n; i++) {
-		d[i] = -(i - 1) * (n - i) * v[i];
-		for (int j = 1; j < i; j++) {
-			d[i] += v[j] * (j - 1);
-		}
+	if (x > y) swap(x, y);
+	long long ans = 0;
+	if (x < 0) {
+		ans = (long long)ceil((double)-x / y);
+		x += ans * y;
 	}
-	
-
+	if (x > y) swap(x, y);
+	if (y >= m) {
+		cout << ans;
+		return 0;
+	}
+	vector<long long> v = { x, y,x+y };
+	while (*v.rbegin() < m) {
+		v.push_back(*v.rbegin() + *(v.rbegin()+1));
+	}
+	ans += v.size() - 2;
+	cout << ans;
 	return 0;
 }
