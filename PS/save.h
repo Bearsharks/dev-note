@@ -1,3 +1,7 @@
+#include <string>
+#include <vector>
+#include <queue>
+using namespace std;
 /*
 * 
 #include <iostream>
@@ -83,4 +87,53 @@ void getcombi(int maxn){
 		save[cur] = v[i] - v[cur-1];
 		cur++;
 	}
+
+
 */
+
+vector<int> sp(vector<vector<pair<int,int>>> graph, int start) {
+	vector<int> result(graph.size(),INT_MAX);
+	result[start] = 0;
+	priority_queue<pair<int, int>> pq;
+	pq.push({ 0,start });
+	while (!pq.empty()) {
+		pair<int,int> cur = pq.top();
+		pq.pop();
+		int cost = -cur.first;
+		int curidx = cur.second;
+		if (cost > result[curidx]) continue;
+
+		for (pair<int,int> adj : graph[curidx]) {
+			if (result[adj.second] > cost + adj.first) {
+				result[adj.second] = cost + adj.first;
+				pq.push({ -(cost + adj.first), adj.second });
+			}
+		}
+	}
+	
+	return result;
+}
+
+vector<int> getpartialmatch(string& n) {
+	int begin = 1;
+	int matched = 0;
+	vector<int> res(n.size());
+	while (begin + matched < n.size()) {
+		if (n[begin + matched] == n[matched]) {
+			matched++;
+			res[begin + matched - 1] = matched;
+		}
+		else {
+			if (matched == 0) {
+				begin++;
+			}
+			else {
+				begin += matched - res[matched-1];
+				matched = res[matched - 1];
+			}
+		}
+	}
+}
+vector<int> kmps(string& h, string& n) {
+
+}
