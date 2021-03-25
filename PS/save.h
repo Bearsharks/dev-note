@@ -88,7 +88,15 @@ void getcombi(int maxn){
 		cur++;
 	}
 
+	난수
+	#include <random>
+	random_device rd;
 
+	// random_device 를 통해 난수 생성 엔진을 초기화 한다.
+	mt19937 gen(rd());
+
+	// 0 부터 99 까지 균등하게 나타나는 난수열을 생성하기 위해 균등 분포 정의.
+	uniform_int_distribution<int> dis(0, 500);
 */
 
 vector<int> sp(vector<vector<pair<int,int>>> graph, int start) {
