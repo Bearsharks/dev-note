@@ -145,3 +145,31 @@ vector<int> getpartialmatch(string& n) {
 vector<int> kmps(string& h, string& n) {
 
 }
+
+const int MAX_V = 501;
+int V;
+vector<pair<int, int>> adj[MAX_V];
+
+bool bellmanFord(int src) {
+	//음수 사이클이 있다면 빈벡터를 반환할것임
+	vector<int> upper(V, 987654321);
+	upper[src] = 0;
+	bool updated;
+
+	for (int iter = 0; iter < V; ++iter) {
+		updated = false;
+		for (int here = 0; here < V; ++here) {
+			for (int i = 0; i < adj[here].size(); i++) {
+				int there = adj[here][i].first;
+				int cost = adj[here][i].second;
+				if (upper[there] > upper[here] + cost) {
+					upper[there] = upper[here] + cost;
+					updated = true;
+				}
+			}
+		}
+		if (!updated) break;
+	}
+	if (updated) return true;
+	return false;
+}
