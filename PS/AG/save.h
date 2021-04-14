@@ -173,3 +173,16 @@ bool bellmanFord(int src) {
 	if (updated) return true;
 	return false;
 }
+
+//v는 자기자신으로 가는 값이 0으로 초기화되어있어야
+//갈수없으면 infinity가 되어야함
+void fw(vector<vector<int>>& v) {
+	int n = v.size();
+	for (int c = 0; c < n; c++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				v[i][j] = min(v[i][c] + v[c][j], v[i][j]);
+			}
+		}
+	}
+}
