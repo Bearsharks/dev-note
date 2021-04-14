@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include "../DS/dsu.h"
 using namespace std;
 /*
 * 
@@ -185,4 +186,60 @@ void fw(vector<vector<int>>& v) {
 			}
 		}
 	}
+}
+
+void topology_sort(vector<bool>& visit, vector<vector<int>>& graph, vector<int>& result, int cur) {
+	visit[cur] = true;
+	for (int c : graph[cur]) {
+		if (!visit[c]) topology_sort(visit, graph, result, c);
+	}
+	result.push_back(cur);
+	return;
+}
+//reverse(result.begin(), result.end());
+
+//최소스패닝트리 알고리즘 O(eloge)
+vector<tuple<long long, int, int>> Kruskal(vector<tuple<long long, int, int>>& edge, int v) {
+	sort(edge.begin(), edge.end());
+	long long answer = 0;
+	DSU dsu(v + 1);
+	vector<tuple<long long, int, int>> result;
+	for (int i = 0, size = edge.size(); i < size; i++) {
+		int a = get<1>(edge[i]);
+		int b = get<2>(edge[i]);
+		if (dsu.find(a) == dsu.find(b)) continue;
+		result.push_back(edge[i]);
+		if (dsu.merge(a, b)) {
+			if (dsu.getSize(a) == v) break;
+		}
+	}
+	return result;
+}
+
+vector<tuple<long long, int, int>> prim(vector<vector<pair<int, long long>>>& graph, int v) {
+	priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater< pair<long long, int>>> minNode;
+	vector<bool> added(v + 1, false);
+	vector<int> parent(v + 1);
+	vector<tuple<long long, int, int>> result;
+	long long answer = 0;
+	minNode.push({ 0,1 });
+	parent[1] = 1;
+	while (!minNode.empty()) {
+		pair<long long, int> cur = minNode.top();
+		minNode.pop();
+		if (added[cur.second]) continue;
+		added[cur.second] = 1;
+		answer += cur.first;
+		if (parent[cur.second] != cur.second) {
+			result.push_back({ cur.first, parent[cur.second], cur.second });
+		}
+
+		for (pair<long long, int> p : graph[cur.second]) {
+			if (!added[p.second]) {
+				minNode.push(p);
+				parent[p.second] = cur.second;
+			}
+		}
+	}
+	return result;
 }

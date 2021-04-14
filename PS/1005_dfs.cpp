@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 void dfs(vector<bool>& visit, vector<vector<int>>& graph, vector<int>& result,int cur) {
     visit[cur] = true;
     for (int c : graph[cur]) {
