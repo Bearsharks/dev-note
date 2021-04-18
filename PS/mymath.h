@@ -1,5 +1,8 @@
 #pragma once
-unsigned long long gcd(unsigned long long u, unsigned long long v) {
+#include <random>
+typedef long long ll;
+typedef unsigned long long ull;
+ull gcd(ull u, ull v) {
     if (v == 0) {
         return u;
     }
@@ -9,9 +12,16 @@ unsigned long long gcd(unsigned long long u, unsigned long long v) {
 }
 
 //만약 a와 mod 가 서로소라면 %mod연산에 대해 a의 역원은 a^(mod-2) 이다.
-long long binpow(long long val, long long deg, long long mod) {
+ll binpow(ll val, ll deg, ll mod) {
     if (!deg) return 1 % mod;
     if (deg & 1) return binpow(val, deg - 1, mod) * val % mod;
-    long long res = binpow(val, deg >> 1, mod);
+    ll res = binpow(val, deg >> 1, mod);
     return (res * res) % mod;
+}
+
+ull llpow(ull val, ull deg) {
+    if (!deg) return 1;
+    if (deg & 1) return llpow(val, deg - 1) * val;
+    ull res = llpow(val, deg >> 1);
+    return res * res;
 }
