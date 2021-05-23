@@ -1,16 +1,27 @@
-﻿#include <iostream>
+﻿/*
+#include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
 
-int main()
-{
-    int n;
-    cin >> n;
-    int ans = 0;
-    while (n > 0) {
-        ans++;
-        n /= 2;
+vector<int> sp(vector<vector<pair<int, int>>> graph, int start) {
+    vector<int> result(graph.size(),INT_MAX);
+    result[start] = 0;
+    priority_queue<pair<int, int>> pq;
+    pq.push({ 0,start });
+    while (!pq.empty()) {
+        pair<int, int> cur = pq.top(); pq.pop();
+        int cost = -cur.first;
+        int i = cur.second;
+        if (result[i] < cost) continue;
+        for (pair<int, int> adj : graph[i]) {
+            if (adj.first + cost < result[adj.second]) {
+                result[adj.second] = cost + adj.first;
+                pq.push({ -(adj.first + cost), adj.second });
+            }
+        }
     }
-	
-    cout << ans;
-    return 0;
-}
+
+
+    return result;
+}*/
