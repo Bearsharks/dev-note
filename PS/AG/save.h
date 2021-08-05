@@ -245,3 +245,29 @@ vector<tuple<long long, int, int>> prim(vector<vector<pair<int, long long>>>& gr
 	}
 	return result;
 }
+
+class Trie {
+private:
+	Trie* child[26];
+	int count;
+public:
+	Trie() : child(), count(0) {}
+	void Insert(string str) {
+		Trie* now = this;
+		for (char ch : str) {
+			now->count++;
+			if (now->child[ch - 'a'] == nullptr) now->child[ch - 'a'] = new Trie();
+			now = now->child[ch - 'a'];
+		}
+	}
+
+	int Search(string str) {
+		Trie* now = this;
+		for (char ch : str) {
+			if (ch == '?') return now->count;
+			now = now->child[ch - 'a'];
+			if (now == nullptr) break;
+		}
+		return 0;
+	}
+};
