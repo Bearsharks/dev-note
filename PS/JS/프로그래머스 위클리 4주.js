@@ -29,3 +29,6 @@ function solution(table, languages, preference) {
 
     return answer;
 }
+let a = 1;
+
+solution();
