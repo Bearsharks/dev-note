@@ -1,12 +1,16 @@
+
 {
-    const abc = () => {
+
+
+    function abc() {
         a();
         console.log("bc");
     }
 
-    const a = () => {
+    function a() {
         console.log('a');
     }
-    abc();
+
 }
 
+abc();
