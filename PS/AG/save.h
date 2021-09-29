@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <sstream>
 #include "../DS/dsu.h"
 using namespace std;
 /*
@@ -123,6 +124,17 @@ vector<int> sp(vector<vector<pair<int,int>>> graph, int start) {
 	}
 	
 	return result;
+}
+
+void fwsp(vector<vector<int>>& adj) {
+	int n = adj.size();
+	for (int k = 0; k < n; k++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				adj[i][j] = min(adj[i][j], adj[i][k] + adj[k][j]);
+			}
+		}
+	}
 }
 
 vector<int> getpartialmatch(string& n) {
@@ -271,3 +283,15 @@ public:
 		return 0;
 	}
 };
+
+vector<string> split(string input, char delimiter) {
+	vector<string> answer;
+	stringstream ss(input);
+	string temp;
+
+	while (getline(ss, temp, delimiter)) {
+		answer.push_back(temp);
+	}
+
+	return answer;
+}
