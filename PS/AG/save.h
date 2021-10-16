@@ -102,7 +102,17 @@ void getcombi(int maxn){
 	// 0 부터 99 까지 균등하게 나타나는 난수열을 생성하기 위해 균등 분포 정의.
 	uniform_int_distribution<int> dis(0, 500);
 */
+void print(vector<vector<int>>& v) {
+	cout << "\n";
+	int n = v.size();
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << v[i][j];
+		}
+		cout << "\n";
+	}
 
+}
 vector<int> sp(vector<vector<pair<int,int>>> graph, int start) {
 	vector<int> result(graph.size(),INT_MAX);
 	result[start] = 0;
