@@ -7,6 +7,16 @@
 using namespace std;
 /*
 * 
+* 
+#define LOCAL
+#include "test.h"
+
+#ifdef LOCAL
+#define debug(...) cerr << "[" << #__VA_ARGS__ << "]:", debug_out(__VA_ARGS__)
+#else
+#define debug(...)
+#endif
+
 #include <iostream>
 
 using namespace std;
