@@ -13,7 +13,7 @@ int main() {
         cin >> v[i];
     }
     int i = 0;
-    long long curmn = 98766554332;
+    long long curmn = 987665543321;
     long long a, b;
     while (i < n && v[i] < 0) {
         vector<long long>::iterator iter = lower_bound(v.begin(), v.end(), -v[i]);
