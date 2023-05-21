@@ -1,12 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <set>
-#include <tuple>
 #include <queue>
 using namespace std;
 
 typedef long long ll;
-
 
 int main() {
     int n, m;
@@ -24,14 +21,16 @@ int main() {
     q.push(1);
     while (!q.empty()) {
         int cur = q.front(); q.pop();
+        // cur에서 갈 수 있는 모든 노드를 순회 v[cur]에 들어있다.
         for (int k : v[cur]) {
-            if (isvisit[k] == 0) {
+            if (isvisit[k] == 0) { // 방문 안 했으면 큐에 넣고 감염 될 것이기에 1더함 
                 isvisit[k] = 1;
                 q.push(k);
                 answer++;
             }
         }
     }
+
     cout << answer-1;
     return 0;
 }
